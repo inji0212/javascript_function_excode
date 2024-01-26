@@ -14,7 +14,7 @@
 <script>
 const users = [
   { name: 'AA', age: 35 },
-  { name: 'BB', age: 26 },
+  { name: 'BB', age: ㄴ26 },
   { name: 'CC', age: 28 },
   { name: 'CC', age: 34 },
   { name: 'EE', age: 23 }
@@ -22,9 +22,12 @@ const users = [
 
 console.log(_.reduce((total, u) => total + u.age, 0, users));
 
+## 시작값이 없느 reduce가 좋다.
+
 const add = (a, b) => a + b;
 
 console.log(_.reduce(add, L.map(u => u.age, users)));
+# 이형태가 조금더 좋은 형태이다.
 
 const ages = L.map(u => u.age);
 
@@ -39,11 +42,15 @@ console.log(
   _.reduce((total, u) => u.age >= 30 ? total : total + u.age,
     0,
     users));
+            =>a>=c? b:b +c , if 문임
 
 console.log(
   _.reduce(add,
     L.map(u => u.age,
       L.filter(u => u.age < 30, users))));
+          => 필터로 if 문 대신
+
+          
 
 console.log(
   _.reduce(add,
