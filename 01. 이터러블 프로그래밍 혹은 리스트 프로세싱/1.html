@@ -20,7 +20,7 @@
       if (a % 2) {
         const b = a * a;
         acc += b;
-        if (--limit == 0) break;
+        if (--limit == 0) break; # 리밋을 하나씩 빼고 0일때 그만
       }
     }
     console.log(acc);
@@ -28,10 +28,26 @@
   f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 </script>
 
-2. if를 filter로
+
+for같은 걸 명령형 
+이터러블을 함수형
+
+2. if를 filter로 
+ for 문에서 list~ if ==>  L.filter(a => a % 2,list)로
+
 3. 값 변화 후 변수 할당을 map으로
+ cons b = a*a ==> L.map(a=>a*a,L.filter(a=>a%2,list()))
+
 4. break를 take로
+ if ~ break ==> L.take(limit,L.map(a=>a*a,L.filter(a=>a%2,list())))
+
 5. 축약 및 합산을 reduce로
+ 위 코드==>
+  _.reduce((acc<변수>,a<조건에 맞는 변수들>)=>acc+a<acc에 a를 더함>,0<acc=0>,
+            L.take(limit,L.map(a=>a*a,L.filter(a=>a%2,list()))))
+  add=(a,b)=>a+b; 함수를 이용해서 _.reduce(add,L.take~)사용가능
+
+_.go를 사용해서 위식을 뒤집어 조금더 읽기 쉽게 하면 아래 코드 완성
 
 <script>
   const add = (a, b) => a + b;
@@ -48,9 +64,11 @@
   console.clear();
 </script>
 
-6. while을 range로
-7. 효과를 each로 구분
+6. while을 range로 _.each(console.log,L.range(end));0~9까지 출력된다.
+ 혹은 L.range(start,stop,step)형태
 
+7. 효과를 each로 구분 _.each() 값을 변화시켜주는 효과를 가지고 있다는 뜻
+ 
 <script>
   function f3(end) {
     let i = 1;
@@ -63,7 +81,7 @@
 
   function f4(end) {
     _.go(
-      L.range(1, end, 2),
+      L.range(1, end, 2), end보다 작을때까지 1 부터 ++2
       _.each(console.log));
   }
   f4(10);
@@ -72,18 +90,35 @@
 </script>
 
 8. 추억의 별 그리기, 구구단
+ *
+ **
+ ***
+ ****
+  ...
 
 <script>
   const join = sep => _.reduce((a, b) => `${a}${sep}${b}`);
 
   _.go(
     L.range(1, 6),
+    -> 5,[1,2,3,4]
+
     L.map(L.range),
+    -> [0],[0,1]...[0,1,2,3,4]
+
     L.map(L.map(_ => '*')),
+    ->*로 변경
+
     L.map(join('')),
+    -> 배열사이 간격 없애기(=L.map(_.reduce(a,b)=>'${a}$'{b}'))
+    -> join함수를 만들어서 넣은상황
     join('\n'),
+    -> 엔터 (=L.reduce(a,b)=>'${a}\n$'{b}')
+
     console.log);
 
+  
+    구구단
   _.go(
     L.range(2, 10),
     L.map(a => _.go(
