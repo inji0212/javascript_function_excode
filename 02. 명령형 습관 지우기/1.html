@@ -108,7 +108,7 @@ console.log(query3(obj1));
   Object.entries,
   L.reject(([_, v]) => v === undefined),
   L.map(([k, v]) => `${k}=${v}`),
-  _.reduce((a, b) => `${a}&${b}`));*/
+  _.reduce((a, b) => `${a}&${b}`));*/ 리턴하는 함수 pipe
 
 const query5 = _.pipe(
   Object.entries,
@@ -129,11 +129,11 @@ const queryToObject = _.pipe(
   split('&'),
   L.map(split('=')),
   L.map(([k, v]) => ({ [k]: v })),
-  _.reduce(Object.assign));
+  _.reduce(Object.assign)); #reduce.add와 똑같다.
 
 console.log(queryToObject('a=1&c=CC&d=DD'));
 </script>
-
+# 돌리는 함수
 
 </body>
 </html>
