@@ -20,12 +20,13 @@ _.go(
   10,
   fg,
   console.log);
-
+# 아무 값도 넣지 않으면 naN 에러가 난다.
 _.go(
   [],
   L.map(fg),
   _.each(console.log));
 
+# 에러가 나도 naN이 아닌 어떤 값도 불러오지 않게하는 방법
 _.go(
   [10],
   L.map(fg),
@@ -48,7 +49,7 @@ const users = [
 const user = _.find(u => u.name == 'BB', users);
 if (user) {
   console.log(user.age);
-}
+} # undefined 이 출력
 
 // _.each(console.log,
 //   L.take(1,
@@ -59,6 +60,7 @@ _.go(users,
   L.map(u => u.age),
   L.take(1),
   _.each(console.log));
+  # 값이 없으면 출력이 되지 않는다.
 </script>
 
 </body>
