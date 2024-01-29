@@ -18,6 +18,9 @@ const obj1 = {
 };
 </script>
 
+
+# 이들을 이용해야만 다른 것들을 응용할 수 있다
+즉 이터러블화 하는 함수들
 1. values
 
 <script>
@@ -41,6 +44,7 @@ console.clear();
 </script>
 
 2. entries
+# 이터러블화 
 
 <script>
 L.entries = function *(obj) {
@@ -77,6 +81,8 @@ _.go(
 console.clear();
 </script>
 
+
+
 4. 어떠한 값이든 이터러블 프로그래밍으로 다루기
   - 이터러블로 이터러블 프로그래밍
   - 객체를 제너레이터를 이용해서 이터레이터로 만들어서 이터러블 프로그래밍
@@ -105,6 +111,8 @@ console.clear();
 </script>
 
 5. object
+#다양성 높은
+# 다 객체로 만들 수있다.
 
 <script>
 const a = [['a', 1], ['b', 2], ['c', 3]];
@@ -139,14 +147,17 @@ const mapObject = (f, obj) => _.go(
   object);
 
 console.log(mapObject(a => a + 10, { a: 1, b: 2, c: 3 }));
-// [['a', 1], ['b', 2], ['c', 3]]
+// [['a', 1], ['b', 2], ['c', 3]] L.entries
+// 베열을 만들어 이터러블화 시킨뒤 객체화 시키는 것
 // [['a', 11], ['b', 12], ['c', 13]]
-// { a: 11 } ...
+// { a: 11 } ... object 객체화
 // { a: 11, b: 12, c: 13 }
 console.clear();
 </script>
 
 7. pick
+콘솔에 의존하여 찾는 방법
+뭐가 맞다보단 더 적은 경우 수를 기준으로 하는게 짧아서 더 좋은 경우가 많다.
 
 <script>
 const obj2 = { a: 1, b: 2, c: 3, d: 4, e: 5 };
@@ -163,6 +174,8 @@ console.clear();
 </script>
 
 8. indexBy
+# 여러번 유저의 값을 찾을 때면
+# 시간 단축으로 사용하는 것이 좋다.
 
 <script>
 const users = [
@@ -180,9 +193,14 @@ const users2 = _.indexBy(u => u.id, users);
 
 console.log(users2);
 
+// 5: {}
+//10: {}
+//... 형태로 출력
+
 </script>
 
 9. indexBy 된 값을 filter 하기
+# 인덱스형태는 필터링이 일반적인 것으로 안된다.
 
 <script>
 // console.log(_.filter(({age}) => age >= 30, users));
